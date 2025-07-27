@@ -2,16 +2,19 @@
 
 # tmux aliases are present in bash-it, following are missing there.
 
+alias etmuxdis='touch ${HOME}/.disable-etmux'
+alias etmuxen='rm -rf ${HOME}/.disable-etmux'
+
 # This is for tmux based remote-ssh dev users, and it does the following:
-# 1. Binds 'Esc+x' key-combo to help invoke tmux from non-tmux bash
-# 2. Appends $weedir/tmux.conf contents to ~/.tmux.conf
-#    These are customizations of tmux key-bindings, behavior, navigation, etc
-# 3. Forces default shell startup in tmux window always (can be exited by ctrl-d).
-#    To DISABLE tmux auto-launch per each bash session, do the following:
-#    $ touch $weedir/disable-wee-tmux
-#    If enabled, tmux can be either:
-#    a. first-available previously detached-tmux session, re-attached automatically OR
-#    b. new tmux session if there's no prev detached tmux session
+# . Binds 'Esc+x' key-combo to help invoke tmux from non-tmux bash
+# . Enables sourcing etmux.conf in ${HOME}/.tmux.conf
+# . Forces default shell startup in tmux window always (can be exited by ctrl-d).
+#   To disable/re-enable etmux auto-launch per each bash session, use below commands:
+#    $ etmuxdis # to disable
+#    $ etmuxen  # to enable
+# . If enabled, tmux can be either:
+#   a. first-available previously detached-tmux session, re-attached automatically OR
+#   b. new tmux session if there's no prev detached tmux session
 if [ ! -f $weedir/disable-wee-tmux ]; then
 	wtmux () {
 		local sessions=$(tmux ls 2>/dev/null| grep -v "attached")
@@ -24,11 +27,6 @@ if [ ! -f $weedir/disable-wee-tmux ]; then
 	if [ -z "$TMUX" ]; then
 		# Shortcut 'Esc+x' to launch tmux
 		bind -x '"\ex":"wtmux"'
-		# Ensure wee-tmux.conf is sourced in default ~/.tmux.conf
-		if [ ! -f ~/.tmux.conf ] || \
-			[ -z "$(grep -F "source $weedir/wee-tmux.conf" ~/.tmux.conf 2>/dev/null)" ]; then
-			echo "source $weedir/wee-tmux.conf" >> ~/.tmux.conf
-		fi
 		# If there's any prev detached tmux session, attach it
 		# Else, start a fresh tmux session
 		wtmux

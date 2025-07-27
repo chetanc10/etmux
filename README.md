@@ -5,4 +5,6 @@ This package sets up tmux integration with bash with 'Esc' key as control key an
 Using basherbee (recommended): ```basherbee install chetanc10/gitbit```  
 Using basher: ```basher install chetanc10/gitbit```
 
-
+# Commands
+```etmuxdis``` disables etmux for new bash sessions  
+```etmuxen``` enables etmux for new bash sessions
