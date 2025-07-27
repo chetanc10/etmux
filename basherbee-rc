@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# tmux aliases are present in bash-it, following are missing there.
-
-alias etmuxdis='touch ${HOME}/.disable-etmux'
-alias etmuxen='rm -rf ${HOME}/.disable-etmux'
-
 # This is for tmux based remote-ssh dev users, and it does the following:
 # . Binds 'Esc+x' key-combo to help invoke tmux from non-tmux bash
 # . Enables sourcing etmux.conf in ${HOME}/.tmux.conf
@@ -15,7 +10,7 @@ alias etmuxen='rm -rf ${HOME}/.disable-etmux'
 # . If enabled, tmux can be either:
 #   a. first-available previously detached-tmux session, re-attached automatically OR
 #   b. new tmux session if there's no prev detached tmux session
-if [ ! -f $weedir/disable-wee-tmux ]; then
+if [ ! -f ${HOME}/.disable-etmux ]; then
 	wtmux () {
 		local sessions=$(tmux ls 2>/dev/null| grep -v "attached")
 		if [ -n "${sessions}" ] && [ $(echo ${sessions} | wc -l) -gt 0 ]; then
