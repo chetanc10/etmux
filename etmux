@@ -3,6 +3,6 @@
 case ${1:0:1} in
 	e) rm -rf ${HOME}/.disable-etmux ;;
 	d) touch ${HOME}/.disable-etmux ;;
-	*) echo "Usage: $0 <en/dis to enable/disable etmux>" && exit -1 ;;
+	*) echo "Usage: $(basename $0) <en/dis to enable/disable etmux>" && exit -1 ;;
 esac
 
