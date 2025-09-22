@@ -5,8 +5,8 @@
 # . Enables sourcing etmux.conf in ${HOME}/.tmux.conf
 # . Forces default shell startup in tmux window always (can be exited by ctrl-d).
 #   To disable/re-enable etmux auto-launch per each bash session, use below commands:
-#    $ etmuxdis # to disable
-#    $ etmuxen  # to enable
+#    $ etmux d # to disable
+#    $ etmux e  # to enable
 # . If enabled, tmux can be either:
 #   a. first-available previously detached-tmux session, re-attached automatically OR
 #   b. new tmux session if there's no prev detached tmux session
